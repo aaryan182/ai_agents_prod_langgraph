@@ -1,0 +1,32 @@
+Agent Features: 
+
+Upload Resume PDF
+Upload Job Description PDF/text
+Parse PDFs
+Extract Skills( resume + JD)
+Gap analysis (missing skills)
+Refine resume bullet point (ATS Friendly)
+Generate custom cover letter
+Export tailored resume + cover letter to PDF
+End to end LangGraph Agent
+
+
+SYSTEM ARCHITECTURE 
+User
+ ↓
+PDF Parser Tool
+ ↓
+Skill Extractor Agent
+ ↓
+Gap Analyzer Agent
+ ↓
+Bullet Point Refiner Agent
+ ↓
+Cover Letter Agent
+ ↓
+PDF Generator Tool
+ ↓
+Final Output
+
+
+This is a multi stage tool driven agent graph

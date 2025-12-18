@@ -1,0 +1,17 @@
+# Core LLM
+openai>=1.30.0
+
+# LangGraph (agent orchestration)
+langgraph>=0.0.40
+
+# PDF parsing
+PyMuPDF>=1.23.0
+
+# PDF generation
+fpdf>=1.7.2
+
+# Type hints / validation
+typing-extensions>=4.9.0
+
+# (logging, env vars)
+python-dotenv>=1.0.1

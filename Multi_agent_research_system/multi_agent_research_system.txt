@@ -1,0 +1,20 @@
+Multi-Agent Research System 
+
+Agents involved: 
+Search Agent: gathers raw information
+Extractor Agent: pulls fact & key points
+Summarizer Agent: condenses information
+Critique Agent: check quality, bias, gaps
+Report Generator Agent: produces final structured Agent
+
+User Query
+   ↓
+Search Agent (tool: web/RAG)
+   ↓
+Extractor Agent (facts, stats, claims)
+   ↓
+Summarizer Agent (concise summary)
+   ↓
+Critique Agent (quality check)
+   ↓
+Report Generator Agent (final output)

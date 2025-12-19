@@ -1,0 +1,44 @@
+Customer Support Ticket Router + Resolution Agent
+
+This system demonstrates: 
+
+multi agent orchestration , LLM as router , Conditional branching, Human in the loop approval, State persistence across turns, Escalation logic
+
+
+Agents involved:
+
+Ticket Classifier Agent
+-> Classifies ticket into: technical, billing, general
+-> Outputs confidence score
+
+Resolution Agents (3): 
+
+Technical Support Agent
+Billing Support Agent
+General Support Agent
+
+Human in the loop Node
+-> Pauses workflow for human review on low confidence or complex cases
+
+Escalation Logic
+-> If confidence < threshold OR unresolved → escalate
+
+Persistent Ticket Memory
+-> Ticket history across multiple messages (Redis / DB abstraction)
+
+
+
+HIGH-LEVEL ARCHITECTURE
+User Ticket
+   ↓
+Classifier Agent (LLM)
+   ↓
+Confidence Check
+   ├── High confidence → Route to Specialist Agent
+   └── Low confidence → Human Review
+   ↓
+Resolution Agent
+   ↓
+Resolved?
+   ├── Yes → Close Ticket
+   └── No → Escalate to Human

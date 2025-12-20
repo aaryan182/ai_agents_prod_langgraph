@@ -1,0 +1,31 @@
+Building: 
+
+Financial Data Analysis Agent: A multi step LangGraph agent that:
+Fetches real-time & historical stock data (yfinance)
+Computes technical indicators (ta library)
+Generates structured financial reports (JSON)
+Handles API failures, empty data, bad tickers
+Uses explicit state tracking
+Uses conditional routing
+Validates output before finalizing
+
+
+HIGH LEVEL ARCHITECTURE
+
+User Input (Ticker, Period)
+   ↓
+Validate Input Node
+   ↓
+Fetch Market Data Tool (yfinance)
+   ↓
+Data Quality Check
+   ├─ Fail → Retry / Ask user
+   └─ Pass
+   ↓
+Technical Analysis Node (ta)
+   ↓
+Report Generator Node (JSON)
+   ↓
+Output Validation Node
+   ↓
+Final Output

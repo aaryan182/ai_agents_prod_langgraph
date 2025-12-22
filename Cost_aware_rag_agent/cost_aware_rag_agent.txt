@@ -1,0 +1,11 @@
+Agent Flow
+User Query
+  ↓
+Cost Estimator Node
+  ↓
+Retrieval Strategy Router
+  ↓
+Cheap Model RAG  ─┐
+                  ├─→ Answer Validator
+Expensive Model RAG┘        ↓
+                         Accept OR Re-route

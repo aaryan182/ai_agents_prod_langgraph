@@ -1,4 +1,4 @@
-# 🎯 Resume Tailor Agent
+# Resume Tailor Agent
 
 <div align="center">
 
@@ -15,56 +15,56 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [Project Structure](#-project-structure)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [How It Works](#-how-it-works)
-- [Component Details](#-component-details)
-- [State Management](#-state-management)
-- [Configuration](#-configuration)
-- [Examples](#-examples)
-- [Contributing](#-contributing)
+- [Overview](#overview)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Usage](#usage)
+- [How It Works](#how-it-works)
+- [Component Details](#component-details)
+- [State Management](#state-management)
+- [Configuration](#configuration)
+- [Examples](#examples)
+- [Contributing](#contributing)
 
 ---
 
-## 🌟 Overview
+## Overview
 
 **Resume Tailor Agent** is an end to end LangGraph powered AI agent that revolutionizes the job application process. By leveraging OpenAI's GPT-4 and intelligent workflow orchestration it analyzes your resume against job descriptions, identifies skill gaps, refines your resume bullets for ATS optimization and generates personalized cover letters all automatically.
 
-### 🎯 Why Use This?
+### Why Use This?
 
-- ⏱️ **Save Time**: Automate the tedious process of tailoring resumes for each job application
-- 🎯 **ATS Optimization**: Ensure your resume passes Applicant Tracking Systems
-- 🔍 **Skill Gap Analysis**: Identify missing skills and incorporate them strategically
-- 📝 **Personalized Content**: Generate custom cover letters that align with job requirements
-- 🤖 **AI-Powered**: Leverage GPT-4 for intelligent content generation
-- 🔄 **End-to-End Automation**: From PDF input to polished output completely automated
+- **Save Time**: Automate the tedious process of tailoring resumes for each job application
+- **ATS Optimization**: Ensure your resume passes Applicant Tracking Systems
+- **Skill Gap Analysis**: Identify missing skills and incorporate them strategically
+- **Personalized Content**: Generate custom cover letters that align with job requirements
+- **AI-Powered**: Leverage GPT-4 for intelligent content generation
+- **End-to-End Automation**: From PDF input to polished output completely automated
 
 ---
 
-## ✨ Features
+## Features
 
 | Feature | Description |
 |---------|-------------|
-| 📄 **PDF Upload** | Upload resume and job description PDFs |
-| 🔍 **Intelligent Parsing** | Extract text content from PDF documents using PyMuPDF |
-| 🧠 **Skill Extraction** | AI-powered extraction of technical skills from both resume and JD |
-| 📊 **Gap Analysis** | Identify missing skills by comparing resume vs job requirements |
-| ✍️ **Resume Refinement** | Rewrite bullet points to be ATS-friendly and JD-aligned |
-| 💌 **Cover Letter Generation** | Create personalized, compelling cover letters |
-| 📦 **PDF Export** | Generate professional PDF with tailored resume + cover letter |
-| 🔄 **LangGraph Orchestration** | Multi-stage agent workflow with state management |
+| **PDF Upload** | Upload resume and job description PDFs |
+| **Intelligent Parsing** | Extract text content from PDF documents using PyMuPDF |
+| **Skill Extraction** | AI-powered extraction of technical skills from both resume and JD |
+| **Gap Analysis** | Identify missing skills by comparing resume vs job requirements |
+| **Resume Refinement** | Rewrite bullet points to be ATS-friendly and JD-aligned |
+| **Cover Letter Generation** | Create personalized, compelling cover letters |
+| **PDF Export** | Generate professional PDF with tailored resume + cover letter |
+| **LangGraph Orchestration** | Multi-stage agent workflow with state management |
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
-### High-Level System Flow
+### High Level System Flow
 
 ```mermaid
 graph TB
@@ -192,21 +192,21 @@ graph LR
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 resume_tailor_agent/
 │
-├── 📄 main.py                      # Application entry point
-├── 📄 requirements.txt             # Python dependencies
-├── 📄 agent.txt                    # Architecture documentation
-├── 📄 README.md                    # This file
+├──  main.py                      # Application entry point
+├──  requirements.txt             # Python dependencies
+├──  agent.txt                    # Architecture documentation
+├──  README.md                    # This file
 │
-├── 📂 graph/                       # LangGraph workflow definitions
+├──  graph/                       # LangGraph workflow definitions
 │   ├── graph.py                    # Graph builder and orchestration
 │   ├── state.py                    # State schema definition
 │   │
-│   └── 📂 nodes/                   # Individual agent nodes
+│   └──  nodes/                   # Individual agent nodes
 │       ├── parse_resume.py         # PDF parsing node
 │       ├── extract_skills.py       # Skill extraction node
 │       ├── gap_analysis.py         # Gap analysis node
@@ -214,19 +214,19 @@ resume_tailor_agent/
 │       ├── cover_letter.py         # Cover letter generation node
 │       └── export_node.py          # PDF export node
 │
-├── 📂 llm/                         # LLM integration layer
+├──  llm/                         # LLM integration layer
 │   └── client.py                   # OpenAI client wrapper
 │
-├── 📂 tools/                       # Utility tools
+├──  tools/                       # Utility tools
 │   ├── pdf_parser.py               # PDF text extraction
 │   └── pdf_exporter.py             # PDF generation
 │
-└── 📂 utils/                       # Additional utilities (empty)
+└──  utils/                       # Additional utilities (empty)
 ```
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 
@@ -274,7 +274,7 @@ export OPENAI_API_KEY="your_openai_api_key_here"
 
 ---
 
-## 💻 Usage
+## Usage
 
 ### Basic Usage
 
@@ -312,7 +312,7 @@ The output PDF will contain:
 
 ---
 
-## 🔬 How It Works
+## How It Works
 
 ### Execution Flow Diagram
 
@@ -354,7 +354,7 @@ sequenceDiagram
 
 ### Step-by-Step Process
 
-#### 1️⃣ **PDF Parsing** (`parse_resume_node`)
+#### 1. **PDF Parsing** (`parse_resume_node`)
 
 ```python
 # Input: PDF file paths
@@ -372,7 +372,7 @@ state["jd_text"] = parse_pdf(jd_path)
 
 ---
 
-#### 2️⃣ **Skill Extraction** (`extract_skills_node`)
+#### 2. **Skill Extraction** (`extract_skills_node`)
 
 ```python
 # Input: resume_text, jd_text
@@ -399,7 +399,7 @@ skills = call_llm(prompt)
 
 ---
 
-#### 3️⃣ **Gap Analysis** (`gap_analysis_node`)
+#### 3. **Gap Analysis** (`gap_analysis_node`)
 
 ```python
 # Input: resume_skills[], jd_skills[]
@@ -418,7 +418,7 @@ state["missing_skills"] = list(
 
 ---
 
-#### 4️⃣ **Resume Refinement** (`refine_bullets_node`)
+#### 4. **Resume Refinement** (`refine_bullets_node`)
 
 ```python
 # Input: resume_text, missing_skills[]
@@ -449,7 +449,7 @@ state["refined_bullets"] = call_llm(prompt)
 
 ---
 
-#### 5️⃣ **Cover Letter Generation** (`cover_letter_node`)
+#### 5. **Cover Letter Generation** (`cover_letter_node`)
 
 ```python
 # Input: jd_text, refined_bullets
@@ -476,7 +476,7 @@ state["cover_letter"] = call_llm(prompt)
 
 ---
 
-#### 6️⃣ **PDF Export** (`export_node`)
+#### 6. **PDF Export** (`export_node`)
 
 ```python
 # Input: refined_bullets, cover_letter
@@ -500,7 +500,7 @@ state["final_pdf_path"] = export_pdf(content, "tailored_resume.pdf")
 
 ---
 
-## 🧩 Component Details
+## Component Details
 
 ### 1. Graph Orchestration (`graph/graph.py`)
 
@@ -625,7 +625,7 @@ def export_pdf(content: str, path: str):
 
 ---
 
-## 📊 State Management
+## State Management
 
 ### State Flow Diagram
 
@@ -696,13 +696,13 @@ graph TD
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Environment Variables
 
 | Variable | Description | Required | Default |
 |----------|-------------|----------|---------|
-| `OPENAI_API_KEY` | OpenAI API authentication key | ✅ Yes | None |
+| `OPENAI_API_KEY` | OpenAI API authentication key |  Yes | None |
 
 ### Model Configuration
 
@@ -721,7 +721,7 @@ def call_llm(prompt, model="gpt-4.1"):  # Change model here
 
 ---
 
-## 📝 Examples
+##  Examples
 
 ### Example 1: Basic Usage
 
@@ -778,13 +778,13 @@ result = agent.invoke({
 
 # Post-process results
 if len(result["missing_skills"]) > 5:
-    print("⚠️ Warning: Many missing skills detected!")
+    print(" Warning: Many missing skills detected!")
     print("Consider additional training in:", result["missing_skills"])
 ```
 
 ---
 
-## 🎨 Advanced Features
+##  Advanced Features
 
 ### Extending the Graph
 
@@ -832,7 +832,7 @@ Resume: {state['resume_text']}
 
 ---
 
-## 🔍 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -872,7 +872,7 @@ def call_llm(prompt, model="gpt-4"):  # Use gpt-4 instead
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Manual Testing
 
@@ -907,7 +907,7 @@ print(result["missing_skills"])  # ["Docker"]
 
 ---
 
-## 🛠️ Development
+## Development
 
 ### Project Development Workflow
 
@@ -937,7 +937,7 @@ graph LR
 
 ---
 
-## 📈 Performance
+##  Performance
 
 ### Typical Execution Times
 
@@ -960,15 +960,15 @@ graph LR
 
 ---
 
-## 🔒 Security & Privacy
+##  Security & Privacy
 
 ### Best Practices
 
-- ✅ Store API keys in environment variables, never in code
-- ✅ Don't commit `.env` files to version control
-- ✅ Be mindful of sensitive information in resumes
-- ✅ Consider data retention policies for uploaded PDFs
-- ✅ Use secure API key storage in production
+-  Store API keys in environment variables, never in code
+-  Don't commit `.env` files to version control
+-  Be mindful of sensitive information in resumes
+-  Consider data retention policies for uploaded PDFs
+-  Use secure API key storage in production
 
 ### Data Flow
 
@@ -982,7 +982,7 @@ Your Machine → OpenAI API → Your Machine
 
 ---
 
-## 🚧 Future Enhancements
+##  Future Enhancements
 
 - [ ] Web UI for easier interaction
 - [ ] Support for DOCX files (Word documents)
@@ -997,7 +997,7 @@ Your Machine → OpenAI API → Your Machine
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Here's how you can help:
 
@@ -1018,25 +1018,10 @@ Contributions are welcome! Here's how you can help:
 ---
 
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **LangGraph** for the excellent agent orchestration framework
 - **OpenAI** for GPT-4 and powerful language models
 - **PyMuPDF** for reliable PDF parsing
 - **FPDF** for simple PDF generation
 - The open-source community for inspiration and support
-
----
-
-
-## 🌟 Star History
-
-If you find this project useful, please consider giving it a ⭐ on GitHub!
-
----
-
-<div align="center">
-
-**[⬆ Back to Top](#-resume-tailor-agent)**
-
-</div>

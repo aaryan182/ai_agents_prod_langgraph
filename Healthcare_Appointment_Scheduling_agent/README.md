@@ -9,22 +9,22 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Key Features](#-key-features)
-- [Architecture](#-architecture)
-- [System Flow](#-system-flow)
-- [Project Structure](#-project-structure)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Detailed Components](#-detailed-components)
-- [Configuration](#-configuration)
-- [API Reference](#-api-reference)
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [System Flow](#system-flow)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Detailed Components](#detailed-components)
+- [Configuration](#configuration)
+- [API Reference](#api-reference)
 
 ---
 
-## 🎯 Overview
+## Overview
 
 The Healthcare Appointment Scheduling Agent is a sophisticated **LangGraph based multi agent system** designed to automate the complex workflow of scheduling medical appointments. It intelligently handles:
 
@@ -39,36 +39,36 @@ This system reduces administrative burden, improves patient experience and ensur
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-### 🔒 **HIPAA Compliant Data Handling**
+### **HIPAA Compliant Data Handling**
 - Strict field validation to prevent unauthorized data exposure
 - Comprehensive audit logging for all operations
 - Secure patient data management
 
-### 🤖 **Intelligent Agent Workflow**
+### **Intelligent Agent Workflow**
 - **7 specialized nodes** working in orchestrated sequence
 - **StateGraph architecture** for transparent workflow management
 - **Conditional routing** based on risk assessment
 
-### 📊 **Predictive Analytics**
+### **Predictive Analytics**
 - No show risk scoring based on patient history
 - Proactive rescheduling for high risk appointments
 - Data driven decision making
 
-### 🔄 **Automated Conflict Resolution**
+### **Automated Conflict Resolution**
 - Smart slot finding when conflicts occur
 - Multi factor availability checking
 - Seamless rescheduling without human intervention
 
-### 🚨 **Smart Escalation**
+### **Smart Escalation**
 - Automatic escalation for high risk patients (>90% no show probability)
 - Human in the loop for complex cases
 - Audit trail for all escalations
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### System Architecture Diagram
 
@@ -159,7 +159,7 @@ The system follows a **layered architecture** with clear separation of concerns:
 
 ---
 
-## 🔄 System Flow
+## System Flow
 
 ### Detailed Workflow Sequence
 
@@ -310,19 +310,19 @@ stateDiagram-v2
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Healthcare_Appointment_Scheduling_agent/
 │
-├── 📄 main.py                          # Application entry point
-├── 📄 requirements.txt                 # Python dependencies
+├── main.py                          # Application entry point
+├── requirements.txt                 # Python dependencies
 │
-├── 📂 graph/                           # Workflow orchestration
+├── graph/                           # Workflow orchestration
 │   ├── graph.py                        # StateGraph definition & compilation
 │   ├── state.py                        # AppointmentState schema
 │   │
-│   └── 📂 nodes/                       # Agent nodes (7 specialized agents)
+│   └── nodes/                       # Agent nodes (7 specialized agents)
 │       ├── intake.py                   # Patient intake & HIPAA validation
 │       ├── availability_check.py       # Calendar availability lookup
 │       ├── conflict_resolver.py        # Smart conflict resolution
@@ -331,24 +331,24 @@ Healthcare_Appointment_Scheduling_agent/
 │       ├── notification_decider.py     # Notification decision logic
 │       └── escalation.py              # Human escalation handler
 │
-├── 📂 llm/                             # LLM integration
+├── llm/                             # LLM integration
 │   └── client.py                       # OpenAI client wrapper
 │
-├── 📂 policies/                        # Compliance & governance
+├── policies/                        # Compliance & governance
 │   └── hippa.py                        # HIPAA validation rules
 │
-├── 📂 tools/                           # External integrations
+├── tools/                           # External integrations
 │   ├── calendar.py                     # Calendar API mock
 │   └── patient_history.py             # Patient history lookup mock
 │
-└── 📂 utils/                           # Utilities
+└── utils/                           # Utilities
     ├── audit.py                        # Audit logging
     └── scoring.py                      # Risk scoring algorithms
 ```
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 
@@ -396,7 +396,7 @@ Healthcare_Appointment_Scheduling_agent/
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### Basic Usage Example
 
@@ -448,7 +448,7 @@ This runs a sample scenario demonstrating:
 
 ---
 
-## 🔍 Detailed Components
+##  Detailed Components
 
 ### 1. Graph Orchestration (`graph/graph.py`)
 
@@ -530,7 +530,7 @@ graph LR
 
 ### 3. Agent Nodes (Detailed)
 
-#### 🔵 **Intake Node** (`graph/nodes/intake.py`)
+#### **Intake Node** (`graph/nodes/intake.py`)
 
 **Purpose:** Validates incoming requests and ensures HIPAA compliance
 
@@ -544,9 +544,9 @@ def intake_node(state):
 ```
 
 **Responsibilities:**
-- ✅ Validates only allowed fields (HIPAA compliance)
-- ✅ Extracts appointment time and doctor ID
-- ✅ Logs validation event
+-  Validates only allowed fields (HIPAA compliance)
+-  Extracts appointment time and doctor ID
+-  Logs validation event
 
 **HIPAA Validation Logic:**
 ```python
@@ -564,7 +564,7 @@ def validate_request(data: dict):
 
 ---
 
-#### 🔵 **Availability Check Node** (`graph/nodes/availability_check.py`)
+#### **Availability Check Node** (`graph/nodes/availability_check.py`)
 
 **Purpose:** Checks doctor's calendar for slot availability
 
@@ -595,7 +595,7 @@ graph TD
 
 ---
 
-#### 🔵 **Conflict Resolver Node** (`graph/nodes/conflict_resolver.py`)
+#### **Conflict Resolver Node** (`graph/nodes/conflict_resolver.py`)
 
 **Purpose:** Finds alternative slots when conflicts occur
 
@@ -620,7 +620,7 @@ def conflict_resolver_node(state):
 
 ---
 
-#### 🔵 **No-Show Risk Node** (`graph/nodes/no_show_risk.py`)
+#### **No Show Risk Node** (`graph/nodes/no_show_risk.py`)
 
 **Purpose:** Predicts patient no-show probability using historical data
 
@@ -647,13 +647,13 @@ def calculate_no_show_risk(previous_no_shows: int) -> float:
 
 | No-Shows | Risk Score | Classification |
 |----------|------------|----------------|
-| 0-1 | 0.2 | 🟢 Low Risk |
-| 2 | 0.6 | 🟡 Medium Risk |
-| 3+ | 0.85 | 🔴 High Risk |
+| 0-1 | 0.2 |  Low Risk |
+| 2 | 0.6 |  Medium Risk |
+| 3+ | 0.85 |  High Risk |
 
 ---
 
-#### 🔵 **Rescheduler Node** (`graph/nodes/rescheduler.py`)
+#### **Rescheduler Node** (`graph/nodes/rescheduler.py`)
 
 **Purpose:** Makes final scheduling decision based on risk assessment
 
@@ -683,7 +683,7 @@ graph TD
 
 ---
 
-#### 🔵 **Notification Decider Node** (`graph/nodes/notification_decider.py`)
+#### **Notification Decider Node** (`graph/nodes/notification_decider.py`)
 
 **Purpose:** Determines notification strategy and escalation needs
 
@@ -698,12 +698,12 @@ def notification_decider_node(state):
 
 | Risk Score | Notify Patient | Escalate to Human |
 |------------|----------------|-------------------|
-| ≤ 0.9 | ✅ Yes | ❌ No |
-| > 0.9 | ✅ Yes | ✅ Yes |
+| ≤ 0.9 |  Yes |  No |
+| > 0.9 |  Yes |  Yes |
 
 ---
 
-#### 🔵 **Escalation Node** (`graph/nodes/escalation.py`)
+#### **Escalation Node** (`graph/nodes/escalation.py`)
 
 **Purpose:** Flags appointments for human review
 
@@ -722,7 +722,7 @@ def escalation_node(state):
 
 ### 4. Support Systems
 
-#### 🔒 HIPAA Compliance (`policies/hippa.py`)
+#### HIPAA Compliance (`policies/hippa.py`)
 
 ```python
 ALLOWED_FIELDS = {
@@ -744,7 +744,7 @@ def validate_request(data: dict):
 
 ---
 
-#### 📅 Calendar Tool (`tools/calendar.py`)
+####  Calendar Tool (`tools/calendar.py`)
 
 ```python
 def is_slot_available(doctor_id: str, time: str) -> bool:
@@ -759,7 +759,7 @@ def is_slot_available(doctor_id: str, time: str) -> bool:
 
 ---
 
-#### 📊 Patient History (`tools/patient_history.py`)
+#### Patient History (`tools/patient_history.py`)
 
 ```python
 def get_no_show_count(patient_id: str) -> int:
@@ -775,7 +775,7 @@ def get_no_show_count(patient_id: str) -> int:
 
 ---
 
-#### 📝 Audit Logger (`utils/audit.py`)
+####  Audit Logger (`utils/audit.py`)
 
 ```python
 def audit(event: str, state):
@@ -795,7 +795,7 @@ def audit(event: str, state):
 
 ---
 
-#### 🧮 Risk Scoring (`utils/scoring.py`)
+####  Risk Scoring (`utils/scoring.py`)
 
 ```python
 def calculate_no_show_risk(previous_no_shows: int) -> float:
@@ -841,7 +841,7 @@ def call_llm(prompt: str, model='gpt-4.1-mini') -> str:
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -917,7 +917,7 @@ def is_slot_available(doctor_id: str, time: str) -> bool:
 
 ---
 
-## 📊 API Reference
+## API Reference
 
 ### Main Entry Point
 
@@ -1060,7 +1060,7 @@ result = agent.invoke({
 
 ---
 
-## 🔐 Security & Compliance
+## Security & Compliance
 
 ### HIPAA Compliance Features
 
@@ -1094,7 +1094,7 @@ def encrypt_patient_id(patient_id: str) -> str:
 
 ### Best Practices for Production
 
-#### ✅ DO:
+####  DO:
 - **Encrypt data at rest** and in transit
 - **Implement role-based access control** (RBAC)
 - **Store audit logs** in separate secure database
@@ -1102,7 +1102,7 @@ def encrypt_patient_id(patient_id: str) -> str:
 - **Implement rate limiting** to prevent abuse
 - **Conduct regular security audits**
 
-#### ❌ DON'T:
+####  DON'T:
 - Store sensitive PHI in logs
 - Expose patient data in error messages
 - Use patient IDs in URLs
@@ -1120,7 +1120,7 @@ def encrypt_patient_id(patient_id: str) -> str:
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Running Tests
 
@@ -1172,7 +1172,7 @@ def test_intake_node_hipaa_violation():
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Docker Deployment
 
@@ -1246,7 +1246,7 @@ spec:
 
 ---
 
-## 📈 Performance Metrics
+##  Performance Metrics
 
 ### Key Performance Indicators (KPIs)
 
@@ -1275,7 +1275,7 @@ def intake_node(state):
 
 ---
 
-## 🔄 Workflow Variations
+## Workflow Variations
 
 ### Alternative Flows
 

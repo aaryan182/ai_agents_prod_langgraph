@@ -1,4 +1,4 @@
-# 🔬 Multi Agent Research System
+# Multi Agent Research System
 
 <div align="center">
 
@@ -15,24 +15,24 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [System Flow](#-system-flow)
-- [Agent Breakdown](#-agent-breakdown)
-- [State Management](#-state-management)
-- [Quick Start](#-quick-start)
-- [Project Structure](#-project-structure)
-- [Code Deep Dive](#-code-deep-dive)
-- [Configuration](#-configuration)
-- [Extending the System](#-extending-the-system)
-- [Contributing](#-contributing)
+- [Overview](#overview)
+- [Features](#features)
+- [Architecture](#architecture)
+- [System Flow](#system-flow)
+- [Agent Breakdown](#agent-breakdown)
+- [State Management](#state-management)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
+- [Code Deep Dive](#code-deep-dive)
+- [Configuration](#configuration)
+- [Extending the System](#extending-the-system)
+- [Contributing](#contributing)
 
 ---
 
-## 🌟 Overview
+## Overview
 
 The **Multi-Agent Research System** is a sophisticated AI-powered research assistant that leverages the power of multiple specialized agents working in a coordinated pipeline. Built on LangGraph and powered by OpenAI's GPT-4, this system transforms simple user queries into professional, well-researched reports.
 
@@ -40,17 +40,17 @@ The **Multi-Agent Research System** is a sophisticated AI-powered research assis
 
 Traditional single agent systems often struggle with complex tasks requiring multiple cognitive skills. This system breaks down the research process into specialized stages:
 
-- 🔍 **Information Gathering** - Raw data collection
-- 🎯 **Fact Extraction** - Identifying key insights
-- 📝 **Summarization** - Condensing information
-- 🔬 **Critical Analysis** - Quality assurance
-- 📊 **Report Generation** - Professional output formatting
+- **Information Gathering** - Raw data collection
+- **Fact Extraction** - Identifying key insights
+- **Summarization** - Condensing information
+- **Critical Analysis** - Quality assurance
+- **Report Generation** - Professional output formatting
 
 ---
 
-## ✨ Features
+## Features
 
-### 🤖 Five Specialized Agents
+### Five Specialized Agents
 Each agent is an expert in its domain, working together seamlessly:
 - **Search Agent** - Retrieves relevant information
 - **Extractor Agent** - Identifies facts, statistics and key claims
@@ -58,21 +58,21 @@ Each agent is an expert in its domain, working together seamlessly:
 - **Critique Agent** - Ensures quality and identifies gaps
 - **Report Agent** - Generates professional research reports
 
-### 🔄 Stateful Workflow
+### Stateful Workflow
 - Maintains context across all agent interactions
 - Each agent builds upon previous results
 - Transparent state transitions
 
-### 🎯 Key Capabilities
-- ✅ Automated research pipeline
-- ✅ Bias detection and quality assurance
-- ✅ Professional report formatting
-- ✅ Extensible architecture
-- ✅ Type-safe state management
+### Key Capabilities
+- Automated research pipeline
+- Bias detection and quality assurance
+- Professional report formatting
+- Extensible architecture
+- Type-safe state management
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### System Architecture Diagram
 
@@ -156,7 +156,7 @@ graph LR
 
 ---
 
-## 🔄 System Flow
+## System Flow
 
 ### Complete Execution Flow
 
@@ -252,9 +252,9 @@ stateDiagram-v2
 
 ---
 
-## 🤖 Agent Breakdown
+## Agent Breakdown
 
-### 1. 🔍 Search Agent
+### 1. Search Agent
 **Purpose**: Initial information gathering
 
 ```python
@@ -275,7 +275,7 @@ def search_agent(state: ResearchState):
 
 ---
 
-### 2. 🎯 Extractor Agent
+### 2. Extractor Agent
 **Purpose**: Identify and extract key information
 
 ```python
@@ -304,7 +304,7 @@ def extractor_agent(state: ResearchState):
 
 ---
 
-### 3. 📝 Summarizer Agent
+### 3. Summarizer Agent
 **Purpose**: Condense information into digestible format
 
 ```python
@@ -332,7 +332,7 @@ def summarizer_agent(state: ResearchState):
 
 ---
 
-### 4. 🔬 Critique Agent
+### 4. Critique Agent
 **Purpose**: Quality assurance and bias detection
 
 ```python
@@ -375,7 +375,7 @@ def critique_agent(state: ResearchState):
 
 ---
 
-### 5. 📊 Report Agent
+### 5. Report Agent
 **Purpose**: Professional report generation
 
 ```python
@@ -418,7 +418,7 @@ def report_agent(state: ResearchState):
 
 ---
 
-## 🗂️ State Management
+## State Management
 
 ### ResearchState Schema
 
@@ -458,7 +458,7 @@ graph LR
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -541,40 +541,40 @@ AI integration in software engineering shows promising results...
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 multi-agent-research-system/
 │
-├── 📄 main.py                    # Application entry point
-├── 📄 requirements.txt            # Python dependencies
-├── 📄 multi_agent_research_system.txt  # System documentation
+├──  main.py                    # Application entry point
+├──  requirements.txt            # Python dependencies
+├──  multi_agent_research_system.txt  # System documentation
 │
-├── 📁 graph/                      # State machine & orchestration
-│   ├── 📄 __init__.py
-│   ├── 📄 graph.py               # LangGraph workflow definition
-│   ├── 📄 state.py               # ResearchState schema
+├──  graph/                      # State machine & orchestration
+│   ├──  __init__.py
+│   ├──  graph.py               # LangGraph workflow definition
+│   ├──  state.py               # ResearchState schema
 │   │
-│   └── 📁 agents/                # Individual agent implementations
-│       ├── 📄 __init__.py
-│       ├── 📄 search_agent.py    # Information retrieval
-│       ├── 📄 extractor_agent.py # Fact extraction
-│       ├── 📄 summarizer_agent.py # Content condensing
-│       ├── 📄 critique_agent.py  # Quality assurance
-│       └── 📄 report_agent.py    # Report generation
+│   └──  agents/                # Individual agent implementations
+│       ├──  __init__.py
+│       ├──  search_agent.py    # Information retrieval
+│       ├──  extractor_agent.py # Fact extraction
+│       ├──  summarizer_agent.py # Content condensing
+│       ├──  critique_agent.py  # Quality assurance
+│       └──  report_agent.py    # Report generation
 │
-├── 📁 llm/                        # LLM integration layer
-│   ├── 📄 __init__.py
-│   └── 📄 client.py              # OpenAI client wrapper
+├──  llm/                        # LLM integration layer
+│   ├──  __init__.py
+│   └──  client.py              # OpenAI client wrapper
 │
-└── 📁 tools/                      # External tools & utilities
-    ├── 📄 __init__.py
-    └── 📄 search_tool.py         # Web search functionality
+└──  tools/                      # External tools & utilities
+    ├──  __init__.py
+    └──  search_tool.py         # Web search functionality
 ```
 
 ---
 
-## 🔍 Code Deep Dive
+##  Code Deep Dive
 
 ### Graph Construction
 
@@ -692,7 +692,7 @@ def web_search(query: str) -> str:
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -743,7 +743,7 @@ def summarizer_agent(state: ResearchState):
 
 ---
 
-## 🔧 Extending the System
+## Extending the System
 
 ### Adding a New Agent
 
@@ -846,7 +846,7 @@ def web_search(query: str) -> str:
 
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
 ### Academic Research
 ```python
@@ -878,7 +878,7 @@ result = agent.invoke({
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -916,7 +916,7 @@ result = agent.invoke({"query": "..."})
 
 ---
 
-## 📊 Performance Considerations
+## Performance Considerations
 
 ### Latency Breakdown
 
@@ -963,7 +963,7 @@ gantt
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Unit Tests
 
@@ -995,7 +995,7 @@ def test_full_pipeline():
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Here's how you can help:
 
@@ -1019,7 +1019,7 @@ Contributions are welcome! Here's how you can help:
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 ### LangGraph Documentation
 - [Official Docs](https://langchain-ai.github.io/langgraph/)
@@ -1032,5 +1032,3 @@ Contributions are welcome! Here's how you can help:
 ### Multi-Agent Systems
 - [Agent Design Patterns](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/)
 - [LangGraph Course](https://academy.langchain.com/)
-
----

@@ -1,4 +1,4 @@
-# 📊 Financial Data Analysis Agent
+# Financial Data Analysis Agent
 
 > A sophisticated multi step LangGraph agent that performs real time financial analysis with technical indicators, quality checks and intelligent routing.
 
@@ -8,24 +8,24 @@
 
 ---
 
-## 🎯 Overview
+## Overview
 
 The **Financial Data Analysis Agent** is an intelligent, production ready system that leverages LangGraph's state machine capabilities to orchestrate a complete financial analysis workflow. It fetches real time stock data, computes technical indicators and generates actionable investment insights.
 
 ### Key Features
 
-✅ **Real-time & Historical Data** - Fetches stock data using yfinance API  
-✅ **Technical Analysis** - Computes RSI, MACD, SMA indicators using ta library  
-✅ **Structured Reports** - Generates JSON-formatted financial reports  
-✅ **Robust Error Handling** - Handles API failures, invalid tickers, empty data  
-✅ **Explicit State Tracking** - TypedDict based state management  
-✅ **Conditional Routing** - Smart decision making with retry logic  
-✅ **Multi-layer Validation** - Input validation, quality checks, output validation  
-✅ **Production-Ready** - Low temperature LLM calls for deterministic behavior
+- **Real-time & Historical Data** - Fetches stock data using yfinance API  
+- **Technical Analysis** - Computes RSI, MACD, SMA indicators using ta library  
+- **Structured Reports** - Generates JSON-formatted financial reports  
+- **Robust Error Handling** - Handles API failures, invalid tickers, empty data  
+- **Explicit State Tracking** - TypedDict based state management  
+- **Conditional Routing** - Smart decision making with retry logic  
+- **Multi-layer Validation** - Input validation, quality checks, output validation  
+- **Production-Ready** - Low temperature LLM calls for deterministic behavior
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### High-Level System Flow
 
@@ -80,7 +80,7 @@ graph LR
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 financial_data_analysis_agent/
@@ -114,7 +114,7 @@ financial_data_analysis_agent/
 
 ---
 
-## 🔧 Installation
+## Installation
 
 ### Prerequisites
 
@@ -149,7 +149,7 @@ financial_data_analysis_agent/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Basic Usage
 
@@ -189,7 +189,7 @@ print(result["report"])
 
 ---
 
-## 📖 Component Deep Dive
+## Component Deep Dive
 
 ### 1. State Management (`graph/state.py`)
 
@@ -223,7 +223,7 @@ stateDiagram-v2
 
 ### 2. Node Implementations
 
-#### 🔍 Validate Input (`graph/nodes/validate_input.py`)
+#### Validate Input (`graph/nodes/validate_input.py`)
 
 **Purpose:** Validates user input before processing begins.
 
@@ -237,12 +237,12 @@ def validate_input(state):
 ```
 
 **Validations:**
-- ✅ Ticker must contain only alphabetic characters
-- ✅ Period must be one of: `1mo`, `3mo`, `6mo`, `1y`, `5y`
+- Ticker must contain only alphabetic characters
+- Period must be one of: `1mo`, `3mo`, `6mo`, `1y`, `5y`
 
 ---
 
-#### 📥 Fetch Data (`graph/nodes/fetch_data.py`)
+#### Fetch Data (`graph/nodes/fetch_data.py`)
 
 **Purpose:** Retrieves stock data from Yahoo Finance API.
 
@@ -260,9 +260,9 @@ def fetch_data(state):
 ```
 
 **Features:**
-- 🔄 Automatic retry on failure
-- 🛡️ Exception handling for network errors
-- 📊 Returns pandas DataFrame with OHLCV data
+- Automatic retry on failure
+- Exception handling for network errors
+- Returns pandas DataFrame with OHLCV data
 
 **Data Tool (`tools/market_data.py`):**
 ```python
@@ -278,7 +278,7 @@ def fetch_stock_data(ticker: str, period: str):
 
 ---
 
-#### ✅ Quality Check (`graph/nodes/quality_check.py`)
+#### Quality Check (`graph/nodes/quality_check.py`)
 
 **Purpose:** Ensures data quality before analysis.
 
@@ -297,7 +297,7 @@ def quality_check(state):
 
 ---
 
-#### 🔀 Routing Logic (`graph/nodes/routing_logic.py`)
+#### Routing Logic (`graph/nodes/routing_logic.py`)
 
 **Purpose:** Conditional routing with retry mechanism.
 
@@ -328,7 +328,7 @@ graph TD
 
 ---
 
-#### 📊 Analyze (`graph/nodes/analyse.py`)
+#### Analyze (`graph/nodes/analyse.py`)
 
 **Purpose:** Computes technical indicators for trading signals.
 
@@ -360,7 +360,7 @@ def compute_indicators(df):
 
 ---
 
-#### 📝 Generate Report (`graph/nodes/generate_report.py`)
+#### Generate Report (`graph/nodes/generate_report.py`)
 
 **Purpose:** Creates structured financial report with trading signals.
 
@@ -402,7 +402,7 @@ graph LR
 
 ---
 
-#### 🔒 Validate Output (`graph/nodes/validate_output.py`)
+#### Validate Output (`graph/nodes/validate_output.py`)
 
 **Purpose:** Final validation before returning report.
 
@@ -506,7 +506,7 @@ sequenceDiagram
 
 ---
 
-## 🧪 Testing & Examples
+## Testing & Examples
 
 ### Example 1: Successful Analysis
 
@@ -604,13 +604,13 @@ def call_llm(prompt: str, model: str = "gpt-4.1-mini", temperature: float = 0.2)
 ```
 
 **Features:**
-- 🔒 Singleton pattern for client reuse
-- 🎯 Low temperature (0.2) for deterministic outputs
-- ⚡ Production-ready error handling
+-  Singleton pattern for client reuse
+-  Low temperature (0.2) for deterministic outputs
+-  Production-ready error handling
 
 ---
 
-## 📊 Dependencies
+## Dependencies
 
 ```text
 openai>=1.30.0              # LLM integration
@@ -626,7 +626,7 @@ python-dotenv>=1.0.1        # Environment variable management
 
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
 ### 1. **Automated Trading Signal Generation**
 Run periodic analysis to generate buy/sell signals based on technical indicators.
@@ -642,7 +642,7 @@ Integrate with web apps to provide real-time financial insights.
 
 ---
 
-## 🛠️ Advanced Configuration
+## Advanced Configuration
 
 ### Custom Indicators
 
@@ -681,7 +681,7 @@ def route_after_fetch(state):
 
 ---
 
-## 🔐 Security Best Practices
+## Security Best Practices
 
 1. **Never commit API keys** - Use `.env` files (add to `.gitignore`)
 2. **Validate all inputs** - Already implemented in `validate_input`
@@ -690,7 +690,7 @@ def route_after_fetch(state):
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Issue: "No market data found"
 
@@ -709,7 +709,7 @@ def route_after_fetch(state):
 
 ---
 
-## 🚀 Performance Optimization
+## Performance Optimization
 
 ### Caching Strategy
 
@@ -737,7 +737,7 @@ async def analyze_multiple_stocks(tickers: list):
     return results
 ```
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -747,6 +747,5 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
----
 
 

@@ -1,6 +1,6 @@
-# 🎫 Customer Support Ticket System
+# Customer Support Ticket System
 
-> An intelligent, AI-powered customer support system that automatically classifies, routes and resolves support tickets using multiple specialized agents built with LangGraph.
+> An intelligent, AI powered customer support system that automatically classifies, routes and resolves support tickets using multiple specialized agents built with LangGraph.
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![LangGraph](https://img.shields.io/badge/LangGraph-Latest-green.svg)](https://github.com/langchain-ai/langgraph)
@@ -8,7 +8,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Key Features](#key-features)
@@ -25,7 +25,7 @@
 
 ---
 
-## 🌟 Overview
+## Overview
 
 This system is a **production ready multi agent orchestration framework** designed for automated customer support ticket handling. It demonstrates advanced AI concepts including:
 
@@ -38,34 +38,34 @@ This system is a **production ready multi agent orchestration framework** design
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 | Feature                           | Description                                                          |
 | --------------------------------- | -------------------------------------------------------------------- |
-| 🤖 **Intelligent Classification** | AI-powered categorization into Technical, Billing or General support |
-| 🎯 **Specialized Agents**         | Domain specific agents for targeted problem resolution               |
-| 📊 **Confidence Scoring**         | Built in uncertainty detection for quality control                   |
-| 👤 **Human Review**               | Automatic escalation for low confidence or complex cases             |
-| 💾 **Persistent Memory**          | Maintains conversation history across multiple messages              |
-| 🔄 **Conditional Routing**        | Smart workflow branching based on ticket properties                  |
-| ⚡ **Real-time Processing**       | Instant ticket classification and response generation                |
+| **Intelligent Classification** | AI-powered categorization into Technical, Billing or General support |
+| **Specialized Agents**         | Domain specific agents for targeted problem resolution               |
+| **Confidence Scoring**         | Built in uncertainty detection for quality control                   |
+| **Human Review**               | Automatic escalation for low confidence or complex cases             |
+| **Persistent Memory**          | Maintains conversation history across multiple messages              |
+| **Conditional Routing**        | Smart workflow branching based on ticket properties                  |
+| **Real-time Processing**       | Instant ticket classification and response generation                |
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```mermaid
 graph TB
     Start([User Submits Ticket]) --> Save[Save to Memory Store]
-    Save --> Classifier[🤖 Classifier Agent]
+    Save --> Classifier[Classifier Agent]
     Classifier --> Confidence{Confidence Check<br/>threshold: 0.75}
 
     Confidence -->|≥ 0.75| Category{Category?}
-    Confidence -->|< 0.75| Human[👤 Human Review Agent]
+    Confidence -->|< 0.75| Human[Human Review Agent]
 
-    Category -->|technical| Tech[🔧 Technical Support Agent]
-    Category -->|billing| Billing[💳 Billing Support Agent]
-    Category -->|general| General[📝 General Support Agent]
+    Category -->|technical| Tech[Technical Support Agent]
+    Category -->|billing| Billing[Billing Support Agent]
+    Category -->|general| General[General Support Agent]
 
     Tech --> Response1[Generate Response]
     Billing --> Response2[Generate Response]
@@ -87,20 +87,20 @@ graph TB
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Multi_Agent_Research_System/
 │
-├── 📄 main.py                          # Entry point - orchestrates the entire flow
-├── 📄 requirements.txt                 # Python dependencies
-├── 📄 customer_support_ticket_agent.txt # System documentation
+├── main.py                          # Entry point - orchestrates the entire flow
+├── requirements.txt                 # Python dependencies
+├── customer_support_ticket_agent.txt # System documentation
 │
-├── 📁 graph/                           # Core workflow orchestration
+├── graph/                           # Core workflow orchestration
 │   ├── graph.py                        # LangGraph workflow builder
 │   ├── state.py                        # Shared state schema (TypedDict)
 │   │
-│   └── 📁 agents/                      # All agent implementations
+│   └── agents/                      # All agent implementations
 │       ├── classifier_agent.py         # Ticket classification + confidence scoring
 │       ├── tech_agent.py               # Technical support specialist
 │       ├── billing_agent.py            # Billing support specialist
@@ -108,16 +108,16 @@ Multi_Agent_Research_System/
 │       ├── human_review_agent.py       # Human escalation handler
 │       └── routing_logic.py            # Confidence-based routing logic
 │
-├── 📁 llm/                             # LLM integration layer
+├── llm/                             # LLM integration layer
 │   └── client.py                       # OpenAI API client wrapper
 │
-└── 📁 memory/                          # Persistence layer
+└── memory/                          # Persistence layer
     └── store.py                        # In-memory ticket history store
 ```
 
 ---
 
-## 🔄 Agent Flow Diagram
+## Agent Flow Diagram
 
 ```mermaid
 sequenceDiagram
@@ -153,7 +153,7 @@ sequenceDiagram
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 
@@ -205,7 +205,7 @@ python-dotenv>=1.0.0
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### Basic Usage
 
@@ -253,7 +253,7 @@ Let me help you resolve this billing issue...
 
 ---
 
-## 📚 Detailed Component Guide
+## Detailed Component Guide
 
 ### 1. State Management (`graph/state.py`)
 
@@ -555,7 +555,7 @@ def build_graph():
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 ### Adjusting Confidence Threshold
 
@@ -592,7 +592,7 @@ def call_llm(prompt: str, model='gpt-4o'):  # Use GPT-4 Turbo
 
 ---
 
-## 🎯 How It Works
+## How It Works
 
 ### Complete Flow Example
 
@@ -604,7 +604,7 @@ Let's trace a ticket through the system:
 "My payment failed but money was deducted from my account"
 ```
 
-**Step-by-Step Execution:**
+**Step by Step Execution:**
 
 1. **Main Entry** (`main.py`)
 
@@ -643,7 +643,7 @@ Let's trace a ticket through the system:
 
 ---
 
-## 💡 Examples
+## Examples
 
 ### Example 1: Technical Issue (High Confidence)
 
@@ -714,7 +714,7 @@ message = "The upgrade button doesn't work"
 
 ---
 
-## 🚦 Advanced Usage
+## Advanced Usage
 
 ### Adding a New Agent Category
 
@@ -759,7 +759,7 @@ def save_ticket_message(ticket_id: str, message: str):
 
 ---
 
-## 📊 Performance & Metrics
+## Performance & Metrics
 
 ### Latency Breakdown
 
@@ -784,7 +784,7 @@ def save_ticket_message(ticket_id: str, message: str):
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Unit Tests
 
@@ -819,7 +819,7 @@ def test_end_to_end():
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 | Issue                 | Solution                                      |
 | --------------------- | --------------------------------------------- |
@@ -830,7 +830,7 @@ def test_end_to_end():
 
 ---
 
-## 🔐 Security Best Practices
+## Security Best Practices
 
 1. **API Key Management**
 

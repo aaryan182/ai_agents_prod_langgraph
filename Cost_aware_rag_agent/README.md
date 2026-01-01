@@ -12,37 +12,37 @@
 
 ---
 
-## 🎯 Overview
+## Overview
 
 The **Cost Aware RAG Agent** is an intelligent system that dynamically routes queries between cost efficient and high quality language models based on query complexity. It uses a sophisticated validation pipeline to ensure answer quality while minimizing API costs.
 
-### ✨ Key Features
+### Key Features
 
-- 🎯 **Smart Query Routing** - Automatically determines optimal model based on query complexity
-- 💰 **Cost Optimization** - Routes simple queries to cheaper models complex ones to premium models
-- 🔄 **Adaptive Retry Logic** - Falls back to expensive models if cheap model answers are inadequate
-- ✅ **Answer Validation** - Validates answer quality before returning to user
-- 📊 **Cost Tracking** - Estimates and tracks API costs for each query
-- 🔀 **LangGraph Integration** - Built on LangGraph for robust workflow orchestration
+- **Smart Query Routing** - Automatically determines optimal model based on query complexity
+- **Cost Optimization** - Routes simple queries to cheaper models complex ones to premium models
+- **Adaptive Retry Logic** - Falls back to expensive models if cheap model answers are inadequate
+- **Answer Validation** - Validates answer quality before returning to user
+- **Cost Tracking** - Estimates and tracks API costs for each query
+- **LangGraph Integration** - Built on LangGraph for robust workflow orchestration
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### System Flow Diagram
 
 ```mermaid
 graph TD
-    A[👤 User Query] --> B[💰 Cost Estimator]
-    B --> C{🔀 Router}
-    C -->|Low Cost<br/>≤ $0.005| D[🚀 Cheap RAG<br/>gpt-4o-mini]
-    C -->|High Cost<br/>> $0.005| E[⭐ Expensive RAG<br/>gpt-4o]
-    D --> F[✅ Validator]
+    A[User Query] --> B[Cost Estimator]
+    B --> C{Router}
+    C -->|Low Cost<br/>≤ $0.005| D[Cheap RAG<br/>gpt-4o-mini]
+    C -->|High Cost<br/>> $0.005| E[Expensive RAG<br/>gpt-4o]
+    D --> F[Validator]
     E --> F
-    F -->|Confidence ≥ 0.75| G[✓ Accept Answer]
+    F -->|Confidence ≥ 0.75| G[Accept Answer]
     F -->|Confidence < 0.75<br/>retries < 1| E
     F -->|Retries Exhausted| G
-    G --> H[📤 Final Response]
+    G --> H[Final Response]
     
     style A fill:#e1f5ff
     style B fill:#fff4e6
@@ -84,41 +84,41 @@ stateDiagram-v2
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 cost-aware-rag-agent/
 │
-├── 📄 main.py                      # Entry point - runs the agent
-├── 📄 requirements.txt             # Python dependencies
-├── 📄 cost_aware_rag_agent.txt    # Simple flow diagram
+├── main.py                      # Entry point - runs the agent
+├── requirements.txt             # Python dependencies
+├── cost_aware_rag_agent.txt    # Simple flow diagram
 │
-├── 📂 graph/                       # LangGraph workflow orchestration
+├── graph/                       # LangGraph workflow orchestration
 │   ├── graph.py                    # Main graph builder & node wiring
 │   ├── state.py                    # State schema (TypedDict)
 │   │
-│   └── 📂 nodes/                   # Individual graph nodes
+│   └── nodes/                   # Individual graph nodes
 │       ├── cost_estimator.py      # Estimates query cost heuristically
 │       ├── router.py              # Routes to cheap/expensive model
 │       ├── cheap_rag.py           # Cheap model RAG (gpt-4o-mini)
 │       ├── expensive_rag.py       # Expensive model RAG (gpt-4o)
 │       └── validator.py           # Validates answer quality
 │
-├── 📂 llm/                         # LLM client abstraction
+├── llm/                         # LLM client abstraction
 │   └── client.py                  # OpenAI client wrapper
 │
-├── 📂 rag/                         # RAG retrieval logic
+├── rag/                         # RAG retrieval logic
 │   └── retriever.py               # Mock context retriever
 │
-└── 📂 utils/                       # Shared utilities
+└── utils/                       # Shared utilities
     └── scoring.py                 # Validation router & scoring logic
 ```
 
 ---
 
-## 🔧 Component Details
+## Component Details
 
-### 1️⃣ **Cost Estimator Node**
+### 1. **Cost Estimator Node**
 
 **Purpose:** Analyzes query complexity to estimate API costs before processing.
 
@@ -143,7 +143,7 @@ cost-aware-rag-agent/
 
 ---
 
-### 2️⃣ **Router Node**
+### 2. **Router Node**
 
 **Purpose:** Routes queries to appropriate model tier based on cost estimate.
 
@@ -164,7 +164,7 @@ else:
 
 ---
 
-### 3️⃣ **RAG Nodes**
+### 3. **RAG Nodes**
 
 #### Cheap RAG Node (`gpt-4o-mini`)
 
@@ -208,7 +208,7 @@ Question:
 
 ---
 
-### 4️⃣ **Validator Node**
+### 4. **Validator Node**
 
 **Purpose:** Ensures answer quality meets acceptable thresholds.
 
@@ -218,9 +218,9 @@ Question:
 flowchart LR
     A[Answer Generated] --> B[Score Quality 0-1]
     B --> C{Score ≥ 0.75?}
-    C -->|Yes| D[✓ Accept Answer]
+    C -->|Yes| D[Accept Answer]
     C -->|No| E{Retries < 1?}
-    E -->|Yes| F[🔄 Retry with Expensive Model]
+    E -->|Yes| F[Retry with Expensive Model]
     E -->|No| G[Accept Best Answer]
     
     style D fill:#4caf50,color:#fff
@@ -229,15 +229,15 @@ flowchart LR
 ```
 
 **Scoring Criteria:**
-- ✅ Correctness
-- ✅ Completeness  
-- ✅ Clarity
+- Correctness
+- Completeness  
+- Clarity
 
 **Confidence Threshold:** `0.75`
 
 ---
 
-### 5️⃣ **Validation Router**
+### 5. **Validation Router**
 
 **Purpose:** Centralized decision logic for retry/accept after validation.
 
@@ -245,21 +245,21 @@ flowchart LR
 
 ```python
 def validation_router(state):
-    # ✅ Case 1: High confidence → Accept
+    # Case 1: High confidence → Accept
     if confidence >= 0.75:
         return "end"
     
-    # 🔄 Case 2: Cheap failed → Retry expensive
+    # Case 2: Cheap failed → Retry expensive
     if route == "cheap" and retries < 1:
         return "expensive"
     
-    # ⚠️ Case 3: Exhausted retries → Accept best
+    # Case 3: Exhausted retries → Accept best
     return "end"
 ```
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -315,7 +315,7 @@ Estimated cost: 0.012
 
 ---
 
-## 🔄 Execution Flow Examples
+## Execution Flow Examples
 
 ### Example 1: Simple Query (Cheap Model Sufficient)
 
@@ -394,7 +394,7 @@ sequenceDiagram
 
 ---
 
-## 📊 State Management
+## State Management
 
 The system uses a **TypedDict** to maintain state across nodes:
 
@@ -470,7 +470,7 @@ class RAGState(TypedDict):
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Tunable Parameters
 
@@ -503,7 +503,7 @@ MAX_RETRIES = 2  # Was 1
 
 ---
 
-## 🧪 Testing & Extending
+## Testing & Extending
 
 ### Adding New Cost Factors
 
@@ -517,7 +517,7 @@ def cost_estimator_node(state):
     
     # Existing logic...
     
-    # 🆕 Add domain-specific cost factors
+    # Add domain-specific cost factors
     if "machine learning" in q or "deep learning" in q:
         cost += 0.015  # ML queries need more reasoning
     
@@ -571,7 +571,7 @@ def validation_router(state: RAGState):
 
 ---
 
-## 💡 Use Cases
+## Use Cases
 
 ### 1. Customer Support Chatbots
 - Simple FAQ queries → Cheap model
@@ -595,7 +595,7 @@ def validation_router(state: RAGState):
 
 ---
 
-## 📈 Performance Characteristics
+## Performance Characteristics
 
 ### Cost Savings Analysis
 
@@ -618,7 +618,7 @@ pie title API Cost Distribution
 
 ---
 
-## 🛠️ Advanced Features
+## Advanced Features
 
 ### Conditional Edge Logic
 
@@ -652,17 +652,17 @@ def validation_router(state: RAGState):
 
 ---
 
-## 🔐 Security & Best Practices
+## Security & Best Practices
 
 ### Environment Variables
 
-✅ **DO:**
+**DO:**
 ```python
 # Use environment variables for API keys
 api_key = os.getenv("OPENAI_API_KEY")
 ```
 
-❌ **DON'T:**
+**DON'T:**
 ```python
 # Never hardcode API keys
 api_key = "sk-..."  # Bad!
@@ -693,7 +693,7 @@ if total_cost > MAX_DAILY_COST:
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -727,7 +727,7 @@ MAX_CHEAP_COST = 0.010  # Increase threshold
 
 ---
 
-## 📚 References & Resources
+## References & Resources
 
 ### LangGraph Documentation
 - [LangGraph Official Docs](https://langchain-ai.github.io/langgraph/)

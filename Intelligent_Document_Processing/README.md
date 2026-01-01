@@ -8,73 +8,73 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Key Features](#-key-features)
-- [Architecture](#-architecture)
-- [System Flow](#-system-flow)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Project Structure](#-project-structure)
-- [Detailed Components](#-detailed-components)
-- [Configuration](#-configuration)
-- [API Reference](#-api-reference)
-- [Examples](#-examples)
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [System Flow](#system-flow)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
+- [Detailed Components](#detailed-components)
+- [Configuration](#configuration)
+- [API Reference](#api-reference)
+- [Examples](#examples)
 
 ---
 
-## 🎯 Overview
+## Overview
 
 The Intelligent Document Processing (IDP) system is a **state of the art document automation pipeline** that leverages Large Language Models (LLMs) and intelligent routing to process various document types including invoices, contracts, medical records and insurance claims.
 
 ### What Makes This Special?
 
-✅ **Cost Optimized**: Automatically routes to cheaper models for simple documents  
-✅ **Confidence Based Routing**: High-confidence results auto-approve, low-confidence goes to human review  
-✅ **Compliance Built In**: Validates required fields per document type  
-✅ **Audit Trail**: Complete logging of all document processing steps  
-✅ **Modular Architecture**: Easy to extend with new document types or processing nodes  
+- **Cost Optimized**: Automatically routes to cheaper models for simple documents  
+- **Confidence Based Routing**: High-confidence results auto-approve, low-confidence goes to human review  
+- **Compliance Built In**: Validates required fields per document type  
+- **Audit Trail**: Complete logging of all document processing steps  
+- **Modular Architecture**: Easy to extend with new document types or processing nodes  
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 | Feature | Description |
 |---------|-------------|
-| 🎯 **Auto Classification** | Identifies document type (invoice, contract, medical record, insurance claim) |
-| 💰 **Smart Cost Routing** | Uses GPT-4-mini for simple docs, GPT-4 for complex ones |
-| 🔍 **Data Extraction** | Extracts structured data from unstructured documents |
-| ✅ **Validation Engine** | Ensures all required fields are present per compliance rules |
-| 📊 **Confidence Scoring** | Calculates processing confidence (0.6 - 0.96) |
-| 🔀 **Intelligent Routing** | Auto-approves high confidence (≥90%) or routes to human review |
-| 📝 **Audit Logging** | Tracks every step with timestamps and document IDs |
+| **Auto Classification** | Identifies document type (invoice, contract, medical record, insurance claim) |
+| **Smart Cost Routing** | Uses GPT-4-mini for simple docs, GPT-4 for complex ones |
+| **Data Extraction** | Extracts structured data from unstructured documents |
+| **Validation Engine** | Ensures all required fields are present per compliance rules |
+| **Confidence Scoring** | Calculates processing confidence (0.6 - 0.96) |
+| **Intelligent Routing** | Auto-approves high confidence (≥90%) or routes to human review |
+| **Audit Logging** | Tracks every step with timestamps and document IDs |
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 The system is built using **LangGraph**, a framework for building stateful, multi actor applications with LLMs. The architecture follows a directed graph pattern where each node performs a specific task.
 
 ```mermaid
 graph TB
-    Start([🚀 Start]) --> Intake[📥 Intake Node]
-    Intake --> Classifier[🏷️ Classifier Node]
-    Classifier --> CostRouter{💰 Cost Router}
+    Start([Start]) --> Intake[Intake Node]
+    Intake --> Classifier[Classifier Node]
+    Classifier --> CostRouter{Cost Router}
     
-    CostRouter -->|Text < 1500 chars| Cheap[🟢 Cheap Extractor<br/>GPT-4-mini]
-    CostRouter -->|Text >= 1500 chars| Expensive[🔴 Expensive Extractor<br/>GPT-4]
+    CostRouter -->|Text < 1500 chars| Cheap[Cheap Extractor<br/>GPT-4-mini]
+    CostRouter -->|Text >= 1500 chars| Expensive[Expensive Extractor<br/>GPT-4]
     
-    Cheap --> Validator[✅ Validator Node]
+    Cheap --> Validator[Validator Node]
     Expensive --> Validator
     
-    Validator --> Confidence[📊 Confidence Scorer]
-    Confidence --> Router{🔀 Decision Router}
+    Validator --> Confidence[Confidence Scorer]
+    Confidence --> Router{Decision Router}
     
-    Router -->|Confidence >= 90%| AutoApprove[✨ Auto Approve]
-    Router -->|Confidence < 90%| Human[👤 Human Review]
+    Router -->|Confidence >= 90%| AutoApprove[Auto Approve]
+    Router -->|Confidence < 90%| Human[Human Review]
     
-    AutoApprove --> End([🏁 End])
+    AutoApprove --> End([End])
     Human --> End
     
     style Intake fill:#e1f5ff
@@ -91,12 +91,12 @@ graph TB
 
 ```mermaid
 graph LR
-    subgraph "🎯 Core Engine"
+    subgraph " Core Engine"
         Graph[LangGraph State Machine]
         State[Document State]
     end
     
-    subgraph "🧠 Processing Nodes"
+    subgraph " Processing Nodes"
         N1[Intake]
         N2[Classifier]
         N3[Cost Router]
@@ -136,9 +136,9 @@ graph LR
 
 ---
 
-## 🔄 System Flow
+## System Flow
 
-### High-Level Process Flow
+### High Level Process Flow
 
 ```mermaid
 sequenceDiagram
@@ -183,9 +183,9 @@ sequenceDiagram
         Note over System,Compliance: 5. VALIDATION PHASE
         System->>Compliance: Check required fields
         alt All fields present
-            Compliance-->>System: ✅ Valid
+            Compliance-->>System:  Valid
         else Missing fields
-            Compliance-->>System: ❌ Validation errors
+            Compliance-->>System:  Validation errors
         end
     end
     
@@ -197,9 +197,9 @@ sequenceDiagram
     rect rgb(200, 230, 201)
         Note over System,Human: 7. INTELLIGENT ROUTING
         alt Confidence >= 90%
-            System->>User: ✨ Auto-approved
+            System->>User:  Auto-approved
         else Confidence < 90%
-            System->>Human: 👤 Manual review required
+            System->>Human:  Manual review required
             Human-->>User: Human decision
         end
     end
@@ -241,7 +241,7 @@ stateDiagram-v2
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 
@@ -284,7 +284,7 @@ typing-extensions>=4.9.0 # Type hints for Python < 3.10
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Basic Usage
 
@@ -319,47 +319,47 @@ CONFIDENCE: 0.96
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 intelligent-document-processing/
 │
-├── 📄 main.py                          # Entry point for the application
-├── 📄 requirements.txt                 # Python dependencies
+├──  main.py                          # Entry point for the application
+├──  requirements.txt                 # Python dependencies
 │
-├── 📁 graph/                           # Core graph orchestration
-│   ├── 📄 graph.py                     # LangGraph state machine definition
-│   ├── 📄 state.py                     # Document state schema (TypedDict)
+├──  graph/                           # Core graph orchestration
+│   ├──  graph.py                     # LangGraph state machine definition
+│   ├──  state.py                     # Document state schema (TypedDict)
 │   │
-│   └── 📁 nodes/                       # Processing nodes (graph vertices)
-│       ├── 📄 intake.py                # Document ingestion & text extraction
-│       ├── 📄 classifier.py            # Document type classification
-│       ├── 📄 cost_router.py           # Model tier selection (cheap/expensive)
-│       ├── 📄 extractor_cheap.py       # GPT-4-mini extraction
-│       ├── 📄 extractor_expensive.py   # GPT-4 extraction
-│       ├── 📄 validator.py             # Field validation against policies
-│       ├── 📄 confidence.py            # Confidence score calculation
-│       ├── 📄 router.py                # Auto-approve vs human review routing
-│       └── 📄 human_review.py          # Human review handler
+│   └──  nodes/                       # Processing nodes (graph vertices)
+│       ├──  intake.py                # Document ingestion & text extraction
+│       ├──  classifier.py            # Document type classification
+│       ├──  cost_router.py           # Model tier selection (cheap/expensive)
+│       ├──  extractor_cheap.py       # GPT-4-mini extraction
+│       ├──  extractor_expensive.py   # GPT-4 extraction
+│       ├──  validator.py             # Field validation against policies
+│       ├──  confidence.py            # Confidence score calculation
+│       ├──  router.py                # Auto-approve vs human review routing
+│       └──  human_review.py          # Human review handler
 │
-├── 📁 llm/                             # LLM integration
-│   └── 📄 client.py                    # OpenAI client wrapper
+├──  llm/                             # LLM integration
+│   └──  client.py                    # OpenAI client wrapper
 │
-├── 📁 policies/                        # Business rules & compliance
-│   └── 📄 compliance.py                # Required field definitions per doc type
+├──  policies/                        # Business rules & compliance
+│   └──  compliance.py                # Required field definitions per doc type
 │
-├── 📁 tools/                           # Utility tools
-│   ├── 📄 text_parser.py               # Text extraction from bytes
-│   └── 📄 vision.py                    # OCR for image-based documents
+├──  tools/                           # Utility tools
+│   ├──  text_parser.py               # Text extraction from bytes
+│   └──  vision.py                    # OCR for image-based documents
 │
-└── 📁 utils/                           # Helper utilities
-    ├── 📄 audit.py                     # Audit logging with timestamps
-    └── 📄 scoring.py                   # Confidence score calculation
+└──  utils/                           # Helper utilities
+    ├──  audit.py                     # Audit logging with timestamps
+    └──  scoring.py                   # Confidence score calculation
 ```
 
 ---
 
-## 🔍 Detailed Components
+##  Detailed Components
 
 ### 1. Core State Management
 
@@ -406,9 +406,9 @@ graph LR
 
 ---
 
-### 2. Processing Nodes (The Brain 🧠)
+### 2. Processing Nodes (The Brain)
 
-#### 📥 **Intake Node** (`graph/nodes/intake.py`)
+#### **Intake Node** (`graph/nodes/intake.py`)
 
 **Purpose:** Convert raw bytes to text and initiate audit trail
 
@@ -426,7 +426,7 @@ def intake_node(state):
 
 ---
 
-#### 🏷️ **Classifier Node** (`graph/nodes/classifier.py`)
+#### **Classifier Node** (`graph/nodes/classifier.py`)
 
 **Purpose:** Identify document type using LLM
 
@@ -445,10 +445,10 @@ Text:
 ```
 
 **Supported Document Types:**
-- 📄 `invoice` - Invoices and billing documents
-- 📜 `contract` - Legal contracts and agreements
-- 🏥 `medical_record` - Medical and health records
-- 💼 `insurance_claim` - Insurance claim forms
+-  `invoice` - Invoices and billing documents
+-  `contract` - Legal contracts and agreements
+-  `medical_record` - Medical and health records
+-  `insurance_claim` - Insurance claim forms
 
 **How it works:**
 1. Sends first 1000 characters to LLM
@@ -458,7 +458,7 @@ Text:
 
 ---
 
-#### 💰 **Cost Router Node** (`graph/nodes/cost_router.py`)
+####  **Cost Router Node** (`graph/nodes/cost_router.py`)
 
 **Purpose:** Optimize costs by routing to appropriate model tier
 
@@ -488,7 +488,7 @@ Average cost reduction: ~85% for simple documents
 
 ---
 
-#### 🟢 **Cheap Extractor Node** (`graph/nodes/extractor_cheap.py`)
+#### **Cheap Extractor Node** (`graph/nodes/extractor_cheap.py`)
 
 **Purpose:** Extract structured data using cost-effective model
 
@@ -510,7 +510,7 @@ Return JSON only.
 
 ---
 
-#### 🔴 **Expensive Extractor Node** (`graph/nodes/extractor_expensive.py`)
+#### **Expensive Extractor Node** (`graph/nodes/extractor_expensive.py`)
 
 **Purpose:** Extract data from complex documents with higher accuracy
 
@@ -534,7 +534,7 @@ Return strict JSON.
 
 ---
 
-#### ✅ **Validator Node** (`graph/nodes/validator.py`)
+####  **Validator Node** (`graph/nodes/validator.py`)
 
 **Purpose:** Ensure compliance by validating required fields
 
@@ -570,7 +570,7 @@ extracted_data = {
     "amount": 450.00,
     "date": "2025-09-01"
 }
-# ✅ Passes validation
+#  Passes validation
 
 # Invalid invoice
 extracted_data = {
@@ -578,12 +578,12 @@ extracted_data = {
     "amount": 450.00
     # Missing "date"
 }
-# ❌ Fails: "Missing required fields: {'date'}"
+#  Fails: "Missing required fields: {'date'}"
 ```
 
 ---
 
-#### 📊 **Confidence Node** (`graph/nodes/confidence.py`)
+#### **Confidence Node** (`graph/nodes/confidence.py`)
 
 **Purpose:** Calculate processing confidence score
 
@@ -609,13 +609,13 @@ def calculate_confidence(errors: int) -> float:
 
 | Score | Level | Meaning | Action |
 |-------|-------|---------|--------|
-| 0.96 | ✅ High | All fields valid | Auto-approve |
-| 0.85 | ⚠️ Medium | Minor issues | Human review |
-| 0.60 | ❌ Low | Major issues | Human review |
+| 0.96 |  High | All fields valid | Auto-approve |
+| 0.85 |  Medium | Minor issues | Human review |
+| 0.60 |  Low | Major issues | Human review |
 
 ---
 
-#### 🔀 **Router Node** (`graph/nodes/router.py`)
+####  **Router Node** (`graph/nodes/router.py`)
 
 **Purpose:** Intelligently route based on confidence threshold
 
@@ -634,8 +634,8 @@ def router_node(state):
 ```mermaid
 graph TD
     A[Confidence Score] --> B{Score >= 0.9?}
-    B -->|Yes| C[✨ Auto-Approve]
-    B -->|No| D[👤 Human Review]
+    B -->|Yes| C[ Auto Approve]
+    B -->|No| D[ Human Review]
     
     C --> E[final_status = 'Processed automatically']
     D --> F[final_status = 'Sent for manual review']
@@ -696,10 +696,10 @@ def call_llm(prompt: str, model="gpt-4.1-mini") -> str:
 ```
 
 **Features:**
-- ✅ Singleton pattern for client reuse
-- ✅ Environment-based API key management
-- ✅ Low temperature (0.1) for deterministic outputs
-- ✅ Simple interface for node usage
+-  Singleton pattern for client reuse
+-  Environment-based API key management
+-  Low temperature (0.1) for deterministic outputs
+-  Simple interface for node usage
 
 ---
 
@@ -792,7 +792,7 @@ OPTIONAL_FIELDS = {
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -869,7 +869,7 @@ def cost_router_node(state):
 
 ---
 
-## 📚 API Reference
+## API Reference
 
 ### Main Entry Point
 
@@ -964,7 +964,7 @@ confidence = calculate_confidence(2)  # Returns 0.6
 
 ---
 
-## 💡 Examples
+## Examples
 
 ### Example 1: Processing an Invoice
 
@@ -1110,19 +1110,19 @@ try:
     })
     
     if result['final_status'] == "Sent for manual review":
-        print("⚠️ Document needs human review")
+        print(" Document needs human review")
         print(f"Reason: Confidence {result['confidence']} < 0.9")
         print(f"Validation errors: {result.get('validation_errors')}")
     else:
-        print("✅ Document processed successfully")
+        print(" Document processed successfully")
         
 except Exception as e:
-    print(f"❌ Processing failed: {str(e)}")
+    print(f" Processing failed: {str(e)}")
 ```
 
 ---
 
-## 🔧 Advanced Usage
+## Advanced Usage
 
 ### Custom Node Implementation
 
@@ -1196,7 +1196,7 @@ async def process_document(
 
 ---
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 ### Typical Processing Times
 
@@ -1219,7 +1219,7 @@ async def process_document(
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Run the Example
 
@@ -1253,7 +1253,7 @@ def test_contract_classification():
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Docker Deployment
 
@@ -1290,7 +1290,7 @@ docker run -e OPENAI_API_KEY=your-key idp-system
 
 ---
 
-## 🔒 Security Considerations
+##  Security Considerations
 
 ### Best Practices
 
@@ -1316,7 +1316,7 @@ docker run -e OPENAI_API_KEY=your-key idp-system
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 

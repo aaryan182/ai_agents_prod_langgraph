@@ -1,4 +1,4 @@
-# 🤖 LangGraph Multi Agent Systems Collection
+# LangGraph Multi Agent Systems Collection
 
 > A comprehensive collection of production-ready AI agent systems built with LangGraph, demonstrating diverse real-world applications from RAG optimization to customer support automation.
 
@@ -9,47 +9,47 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Repository Structure](#-repository-structure)
-- [Agent Systems](#-agent-systems)
-  - [1. Cost-Aware RAG Agent](#1-cost-aware-rag-agent-)
-  - [2. Customer Support Ticket Agent](#2-customer-support-ticket-agent-)
-  - [3. Financial Data Analysis Agent](#3-financial-data-analysis-agent-)
-  - [4. Multi-Agent Research System](#4-multi-agent-research-system-)
-  - [5. Resume Tailor Agent](#5-resume-tailor-agent-)
-- [Architecture Patterns](#-architecture-patterns)
-- [Installation & Setup](#-installation--setup)
-- [Comparative Analysis](#-comparative-analysis)
-- [Key Technologies](#-key-technologies)
-- [Best Practices](#-best-practices)
-- [Contributing](#-contributing)
+- [Overview](#overview)
+- [Repository Structure](#repository-structure)
+- [Agent Systems](#agent-systems)
+  - [1. Cost-Aware RAG Agent](#1-cost-aware-rag-agent)
+  - [2. Customer Support Ticket Agent](#2-customer-support-ticket-agent)
+  - [3. Financial Data Analysis Agent](#3-financial-data-analysis-agent)
+  - [4. Multi-Agent Research System](#4-multi-agent-research-system)
+  - [5. Resume Tailor Agent](#5-resume-tailor-agent)
+- [Architecture Patterns](#architecture-patterns)
+- [Installation & Setup](#installation--setup)
+- [Comparative Analysis](#comparative-analysis)
+- [Key Technologies](#key-technologies)
+- [Best Practices](#best-practices)
+- [Contributing](#contributing)
 
 ---
 
-## 🌟 Overview
+## Overview
 
 This repository showcases **5 sophisticated AI agent systems** built with **LangGraph** each solving unique real world problems through intelligent workflow orchestration. These systems demonstrate:
 
-- ✅ **State Management** - Type safe state handling with TypedDict
-- ✅ **Conditional Routing** - Dynamic decision making based on runtime conditions
-- ✅ **Cost Optimization** - Intelligent model selection to minimize API costs
-- ✅ **Error Handling** - Robust retry mechanisms and validation
-- ✅ **Multi-Agent Collaboration** - Specialized agents working together
-- ✅ **Production Patterns** - Scalable, maintainable architectures
+- **State Management** - Type safe state handling with TypedDict
+- **Conditional Routing** - Dynamic decision making based on runtime conditions
+- **Cost Optimization** - Intelligent model selection to minimize API costs
+- **Error Handling** - Robust retry mechanisms and validation
+- **Multi-Agent Collaboration** - Specialized agents working together
+- **Production Patterns** - Scalable, maintainable architectures
 
-### 🎯 What Makes This Special?
+### What Makes This Special?
 
 Each agent system represents a **complete production pattern** that can be:
-- 📦 Deployed as is for specific use cases
-- 🔧 Extended with additional capabilities
-- 📚 Used as learning material for LangGraph development
-- 🏗️ Adapted as templates for new projects
+- Deployed as is for specific use cases
+- Extended with additional capabilities
+- Used as learning material for LangGraph development
+- Adapted as templates for new projects
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 .
@@ -132,24 +132,24 @@ Each agent system represents a **complete production pattern** that can be:
 
 ---
 
-## 🤖 Agent Systems
+## Agent Systems
 
-### 1. Cost-Aware RAG Agent 💰
+### 1. Cost-Aware RAG Agent
 
 **Purpose:** Optimize RAG query costs by intelligently routing between cheap and expensive models based on query complexity.
 
-#### 🏗️ Architecture Flow
+#### Architecture Flow
 
 ```mermaid
 graph TD
-    A[👤 User Query] --> B[💰 Cost Estimator]
-    B --> C{🔀 Router}
-    C -->|Cost ≤ $0.005| D[🟢 Cheap RAG<br/>GPT-4.1-mini]
-    C -->|Cost > $0.005| E[🔴 Expensive RAG<br/>GPT-4.1]
-    D --> F[✅ Validator]
+    A[User Query] --> B[Cost Estimator]
+    B --> C{Router}
+    C -->|Cost ≤ $0.005| D[Cheap RAG<br/>GPT-4.1-mini]
+    C -->|Cost > $0.005| E[Expensive RAG<br/>GPT-4.1]
+    D --> F[Validator]
     E --> F
-    F --> G{📊 Confidence?}
-    G -->|≥ 0.75| H[✓ End]
+    F --> G{Confidence?}
+    G -->|≥ 0.75| H[End]
     G -->|< 0.75 & retry=0| E
     G -->|retry ≥ 1| H
     
@@ -159,7 +159,7 @@ graph TD
     style H fill:#FFD700
 ```
 
-#### 🔑 Key Components
+####  Key Components
 
 | Component | File | Responsibility |
 |-----------|------|----------------|
@@ -170,7 +170,7 @@ graph TD
 | **Validator** | `validator.py` | Scores answer quality on 0-1 scale, confidence threshold 0.75 |
 | **Scoring Logic** | `scoring.py` | Handles retry logic (max 1), confidence validation, and routing decisions |
 
-#### 📦 State Schema
+####  State Schema
 
 ```python
 class RAGState(TypedDict):
@@ -184,7 +184,7 @@ class RAGState(TypedDict):
     final_answer: str                       # Validated final answer
 ```
 
-#### 💡 Cost Estimation Algorithm
+#### Cost Estimation Algorithm
 
 ```python
 def cost_estimator_node(state):
@@ -204,7 +204,7 @@ def cost_estimator_node(state):
     return state
 ```
 
-#### 🚀 Example Usage
+####  Example Usage
 
 ```python
 from graph.graph import build_graph
@@ -224,29 +224,29 @@ print(f"Estimated Cost: ${result['estimated_cost']}")
 1. Query analyzed → Cost = $0.012 (compare keyword + length)
 2. Routed to Expensive RAG (GPT-4.1)
 3. Context retrieved + Answer generated
-4. Validation score: 0.85 → Accepted ✓
+4. Validation score: 0.85 → Accepted
 
 ---
 
-### 2. Customer Support Ticket Agent 🎫
+### 2. Customer Support Ticket Agent
 
 **Purpose:** Automatically classify and route support tickets to specialized agents with human escalation for low-confidence cases.
 
-#### 🏗️ Architecture Flow
+#### Architecture Flow
 
 ```mermaid
 graph TD
-    A[📥 Ticket Received] --> B[🏷️ Classifier Agent]
-    B --> C{🎯 Confidence Check}
-    C -->|< 0.75| D[👤 Human Review]
-    C -->|≥ 0.75| E{📋 Category?}
-    E -->|Technical| F[🔧 Tech Agent]
-    E -->|Billing| G[💳 Billing Agent]
-    E -->|General| H[💬 General Agent]
-    F --> I[✓ Resolved]
+    A[Ticket Received] --> B[Classifier Agent]
+    B --> C{Confidence Check}
+    C -->|< 0.75| D[Human Review]
+    C -->|≥ 0.75| E{Category?}
+    E -->|Technical| F[Tech Agent]
+    E -->|Billing| G[Billing Agent]
+    E -->|General| H[General Agent]
+    F --> I[Resolved]
     G --> I
     H --> I
-    D --> J[🚨 Escalated]
+    D --> J[Escalated]
     
     style A fill:#e1f5ff
     style D fill:#FFB6C1
@@ -257,7 +257,7 @@ graph TD
     style J fill:#FF6B6B
 ```
 
-#### 🔑 Key Components
+#### Key Components
 
 | Component | File | Responsibility |
 |-----------|------|----------------|
@@ -269,7 +269,7 @@ graph TD
 | **Human Review** | `human_review_agent.py` | Escalates ambiguous tickets to human agents |
 | **Memory Store** | `memory/store.py` | Maintains ticket history for context-aware responses |
 
-#### 📦 State Schema
+#### State Schema
 
 ```python
 class TicketState(TypedDict):
@@ -283,7 +283,7 @@ class TicketState(TypedDict):
     escalated: bool         # Human escalation flag
 ```
 
-#### 🤖 Classification Logic
+#### Classification Logic
 
 ```python
 def classifier_agent(state: TicketState):
@@ -310,7 +310,7 @@ def classifier_agent(state: TicketState):
     return state
 ```
 
-#### 🚀 Example Usage
+#### Example Usage
 
 ```python
 from graph.graph import build_graph
@@ -338,28 +338,28 @@ print(f"Resolved: {result['resolved']}")
 1. Message classified → Category: "billing", Confidence: 0.92
 2. Routed to Billing Agent
 3. Response generated with refund instructions
-4. Ticket marked as resolved ✓
+4. Ticket marked as resolved
 
 ---
 
-### 3. Financial Data Analysis Agent 📊
+### 3. Financial Data Analysis Agent
 
 **Purpose:** Fetch stock market data, perform technical analysis, and generate actionable trading signals with quality validation.
 
-#### 🏗️ Architecture Flow
+#### Architecture Flow
 
 ```mermaid
 graph TD
-    A[📈 Ticker + Period] --> B[✓ Validate Input]
-    B --> C[📡 Fetch Data<br/>yfinance]
-    C --> D{❌ Error?}
+    A[Ticker + Period] --> B[Validate Input]
+    B --> C[Fetch Data<br/>yfinance]
+    C --> D{Error?}
     D -->|Yes & retry<2| C
-    D -->|Yes & retry≥2| E[⚠️ End with Error]
-    D -->|No| F[🔍 Quality Check]
-    F --> G[📊 Analyze<br/>RSI, MACD, SMA]
-    G --> H[📄 Generate Report]
-    H --> I[✅ Validate Output]
-    I --> J[✓ Final Report]
+    D -->|Yes & retry≥2| E[End with Error]
+    D -->|No| F[Quality Check]
+    F --> G[Analyze<br/>RSI, MACD, SMA]
+    G --> H[Generate Report]
+    H --> I[Validate Output]
+    I --> J[Final Report]
     
     style A fill:#e1f5ff
     style C fill:#FFD700
@@ -368,7 +368,7 @@ graph TD
     style J fill:#98FB98
 ```
 
-#### 🔑 Key Components
+#### Key Components
 
 | Component | File | Responsibility |
 |-----------|------|----------------|
@@ -380,7 +380,7 @@ graph TD
 | **Validate Output** | `validate_output.py` | Validates report structure completeness |
 | **Routing Logic** | `routing_logic.py` | Implements retry mechanism (max 2 retries) |
 
-#### 📦 State Schema
+#### State Schema
 
 ```python
 class FinanceState(TypedDict):
@@ -393,7 +393,7 @@ class FinanceState(TypedDict):
     retries: int                    # Retry counter
 ```
 
-#### 📊 Technical Indicators
+#### Technical Indicators
 
 ```python
 def compute_indicators(df):
@@ -410,7 +410,7 @@ def compute_indicators(df):
 - RSI > 70 → **Overbought** (potential sell signal)
 - RSI 30-70 → **Neutral** (hold position)
 
-#### 🚀 Example Usage
+#### Example Usage
 
 ```python
 from graph.graph import build_graph
@@ -443,20 +443,20 @@ print(result["report"])
 
 ---
 
-### 4. Multi-Agent Research System 🔬
+### 4. Multi-Agent Research System
 
 **Purpose:** Conduct comprehensive research through collaborative agents performing search, extraction, summarization, critique, and report generation.
 
-#### 🏗️ Architecture Flow
+#### Architecture Flow
 
 ```mermaid
 graph LR
-    A[🔍 Query] --> B[🌐 Search Agent]
-    B --> C[📋 Extractor Agent]
-    C --> D[📝 Summarizer Agent]
-    D --> E[🎯 Critique Agent]
-    E --> F[📄 Report Agent]
-    F --> G[✅ Final Report]
+    A[Query] --> B[Search Agent]
+    B --> C[Extractor Agent]
+    C --> D[Summarizer Agent]
+    D --> E[Critique Agent]
+    E --> F[Report Agent]
+    F --> G[Final Report]
     
     style A fill:#e1f5ff
     style B fill:#FFD700
@@ -467,7 +467,7 @@ graph LR
     style G fill:#98FB98
 ```
 
-#### 🔑 Key Components
+#### Key Components
 
 | Component | File | Responsibility |
 |-----------|------|----------------|
@@ -478,7 +478,7 @@ graph LR
 | **Report Agent** | `report_agent.py` | Generates professional research report with structure |
 | **Search Tool** | `search_tool.py` | Mock search (ready for SerpAPI/Bing integration) |
 
-#### 📦 State Schema
+#### State Schema
 
 ```python
 class ResearchState(TypedDict):
@@ -490,7 +490,7 @@ class ResearchState(TypedDict):
     final_report: Optional[str]     # Professional report
 ```
 
-#### 🔄 Agent Pipeline
+#### Agent Pipeline
 
 **Sequential Processing:**
 
@@ -507,7 +507,7 @@ class ResearchState(TypedDict):
 - Limitations (from critique)
 - Conclusion
 
-#### 🚀 Example Usage
+#### Example Usage
 
 ```python
 from graph.graph import build_graph
@@ -526,26 +526,26 @@ print(result["final_report"])
 2. Facts extracted → Bullet points with statistics
 3. Summary created → 5-6 sentence overview
 4. Critique performed → Identified missing perspectives
-5. Report generated → Professional formatted document ✓
+5. Report generated → Professional formatted document
 
 ---
 
-### 5. Resume Tailor Agent 🎯
+### 5. Resume Tailor Agent
 
 **Purpose:** Automatically customize resumes and generate cover letters tailored to specific job descriptions using PDF parsing and generation.
 
-#### 🏗️ Architecture Flow
+#### Architecture Flow
 
 ```mermaid
 graph LR
-    A[📄 Resume PDF] --> B[📖 Parse Resume]
-    C[📋 Job Description PDF] --> B
-    B --> D[🔍 Extract Skills]
-    D --> E[📊 Gap Analysis]
-    E --> F[✏️ Refine Bullets]
-    F --> G[✉️ Cover Letter]
-    G --> H[📤 Export PDF]
-    H --> I[✅ Tailored Package]
+    A[Resume PDF] --> B[Parse Resume]
+    C[Job Description PDF] --> B
+    B --> D[Extract Skills]
+    D --> E[Gap Analysis]
+    E --> F[Refine Bullets]
+    F --> G[Cover Letter]
+    G --> H[Export PDF]
+    H --> I[Tailored Package]
     
     style A fill:#e1f5ff
     style C fill:#e1f5ff
@@ -556,7 +556,7 @@ graph LR
     style I fill:#98FB98
 ```
 
-#### 🔑 Key Components
+#### Key Components
 
 | Component | File | Responsibility |
 |-----------|------|----------------|
@@ -569,7 +569,7 @@ graph LR
 | **PDF Parser** | `pdf_parser.py` | PyMuPDF (fitz) wrapper for text extraction |
 | **PDF Exporter** | `pdf_exporter.py` | FPDF wrapper for PDF generation |
 
-#### 📦 State Schema
+#### State Schema
 
 ```python
 class ResumeState(TypedDict):
@@ -585,7 +585,7 @@ class ResumeState(TypedDict):
     final_pdf_path: str             # Output PDF path
 ```
 
-#### 🎯 Gap Analysis Algorithm
+#### Gap Analysis Algorithm
 
 ```python
 def gap_analysis_node(state):
@@ -596,7 +596,7 @@ def gap_analysis_node(state):
     return state
 ```
 
-#### ✏️ Bullet Refinement Process
+#### Bullet Refinement Process
 
 ```python
 prompt = f"""
@@ -612,7 +612,7 @@ Resume: {state['resume_text']}
 """
 ```
 
-#### 🚀 Example Usage
+#### Example Usage
 
 ```python
 from graph.graph import build_graph
@@ -634,12 +634,12 @@ print(f"Missing skills incorporated: {result['missing_skills']}")
 3. Gap analysis → Found 5 missing skills (e.g., "Kubernetes", "GraphQL")
 4. Bullets refined → Resume rewritten to highlight relevant experience
 5. Cover letter generated → Personalized to job requirements
-6. PDF exported → `tailored_resume.pdf` created ✓
+6. PDF exported → `tailored_resume.pdf` created
 
 ---
 
 
-## 🏛️ Architecture Patterns
+## Architecture Patterns
 
 ### Common LangGraph Patterns Demonstrated
 
@@ -916,7 +916,7 @@ python main.py
 
 ---
 
-## 📊 Comparative Analysis
+## Comparative Analysis
 
 ### Agent Comparison Matrix
 
@@ -924,13 +924,13 @@ python main.py
 |---------|----------------|----------------|-------------------|-----------------|---------------|
 | **Complexity** | Medium | Medium | High | Low | Medium |
 | **# of Nodes** | 5 | 5 | 6 | 5 | 6 |
-| **Conditional Routing** | ✅ Yes | ✅ Yes | ✅ Yes | ❌ No | ❌ No |
-| **Retry Logic** | ✅ Yes | ❌ No | ✅ Yes | ❌ No | ❌ No |
-| **External APIs** | ❌ No | ❌ No | ✅ Yes (yfinance) | ⚠️ Optional (SerpAPI) | ❌ No |
-| **File I/O** | ❌ No | ❌ No | ❌ No | ❌ No | ✅ Yes (PDF) |
-| **Memory/History** | ❌ No | ✅ Yes | ❌ No | ❌ No | ❌ No |
-| **Human in Loop** | ❌ No | ✅ Yes | ❌ No | ❌ No | ⚠️ Optional |
-| **Cost Optimization** | ✅ Primary Goal | ❌ No | ❌ No | ❌ No | ❌ No |
+| **Conditional Routing** | Yes | Yes | Yes | No | No |
+| **Retry Logic** | Yes | No | Yes | No | No |
+| **External APIs** | No | No | Yes (yfinance) | Optional (SerpAPI) | No |
+| **File I/O** | No | No | No | No | Yes (PDF) |
+| **Memory/History** | No | Yes | No | No | No |
+| **Human in Loop** | No | Yes | No | No | Optional |
+| **Cost Optimization** | Primary Goal | No | No | No | No |
 | **Best For** | RAG apps | Customer service | Trading signals | Research tasks | Job applications |
 
 ---
@@ -938,38 +938,38 @@ python main.py
 ### Use Case Recommendations
 
 #### Choose **Cost-Aware RAG Agent** when:
-- 💰 LLM costs are a primary concern
-- 📊 Query complexity varies significantly
-- 🔄 Quality validation is required
-- 🎯 You need intelligent model selection
+- LLM costs are a primary concern
+- Query complexity varies significantly
+- Quality validation is required
+- You need intelligent model selection
 
 #### Choose **Customer Support Ticket Agent** when:
-- 🎫 Handling multiple ticket types
-- 👥 Need human escalation path
-- 📜 Require conversation history
-- 🏷️ Classification confidence matters
+- Handling multiple ticket types
+- Need human escalation path
+- Require conversation history
+- Classification confidence matters
 
 #### Choose **Financial Data Analysis Agent** when:
-- 📈 Working with market data
-- 🔢 Need technical indicators
-- ⚠️ Error handling is critical
-- 🔄 Retry logic is important
+- Working with market data
+- Need technical indicators
+- Error handling is critical
+- Retry logic is important
 
 #### Choose **Multi-Agent Research System** when:
-- 🔬 Conducting systematic research
-- 📚 Need quality critique
-- 📄 Want structured reports
-- 🤝 Sequential agent collaboration
+- Conducting systematic research
+- Need quality critique
+- Want structured reports
+- Sequential agent collaboration
 
 #### Choose **Resume Tailor Agent** when:
-- 📄 Processing PDF documents
-- 🎯 Customization required
-- 📊 Gap analysis needed
-- 📤 Output generation required
+- Processing PDF documents
+- Customization required
+- Gap analysis needed
+- Output generation required
 
 ---
 
-## 🔧 Key Technologies
+## Key Technologies
 
 ### Core Stack
 
@@ -992,11 +992,11 @@ python main.py
 
 ---
 
-## 💡 Best Practices
+## Best Practices
 
 ### 1. State Management
 
-✅ **Do:**
+**Do:**
 ```python
 class MyState(TypedDict):
     # Use descriptive field names
@@ -1005,7 +1005,7 @@ class MyState(TypedDict):
     confidence_score: float
 ```
 
-❌ **Don't:**
+**Don't:**
 ```python
 class MyState(TypedDict):
     # Avoid unclear names
@@ -1018,7 +1018,7 @@ class MyState(TypedDict):
 
 ### 2. Node Design
 
-✅ **Do:**
+**Do:**
 - Keep nodes focused on single responsibility
 - Return modified state explicitly
 - Handle errors gracefully
@@ -1033,7 +1033,7 @@ def my_node(state):
     return state
 ```
 
-❌ **Don't:**
+ **Don't:**
 - Mix multiple concerns in one node
 - Mutate state without returning it
 - Let exceptions propagate uncaught
@@ -1042,7 +1042,7 @@ def my_node(state):
 
 ### 3. Routing Logic
 
-✅ **Do:**
+**Do:**
 - Extract routing logic to separate functions
 - Use meaningful route names
 - Document routing conditions
@@ -1055,7 +1055,7 @@ def route_by_confidence(state):
     return "automated_response"
 ```
 
-❌ **Don't:**
+**Don't:**
 - Embed complex logic in lambda functions
 - Use cryptic route names like "path1", "path2"
 
@@ -1063,7 +1063,7 @@ def route_by_confidence(state):
 
 ### 4. Error Handling
 
-✅ **Do:**
+**Do:**
 ```python
 def fetch_data_node(state):
     try:
@@ -1076,7 +1076,7 @@ def fetch_data_node(state):
     return state
 ```
 
-❌ **Don't:**
+**Don't:**
 ```python
 def fetch_data_node(state):
     # Unhandled exception will crash the graph
@@ -1088,7 +1088,7 @@ def fetch_data_node(state):
 
 ### 5. Testing
 
-✅ **Do:**
+**Do:**
 - Test individual nodes in isolation
 - Mock external APIs
 - Validate state schemas
@@ -1103,7 +1103,7 @@ def test_cost_estimator():
 
 ---
 
-## 🚀 Advanced Patterns
+## Advanced Patterns
 
 ### Pattern 1: Dynamic Model Selection
 
@@ -1142,7 +1142,7 @@ graph = build_graph().compile(checkpointer=checkpointer)
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Here are ways you can help:
 
@@ -1168,7 +1168,7 @@ We welcome contributions! Here are ways you can help:
 
 ---
 
-## 📚 Learning Resources
+## Learning Resources
 
 ### LangGraph Documentation
 - [Official Docs](https://python.langchain.com/docs/langgraph)
@@ -1179,5 +1179,3 @@ We welcome contributions! Here are ways you can help:
 - **State Machines**: Understanding graph-based workflows
 - **Agent Architectures**: Multi-agent system design patterns
 - **Prompt Engineering**: Optimizing LLM interactions
-
----
